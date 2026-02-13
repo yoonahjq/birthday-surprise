@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生日惊喜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Helvetica Neue", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.8;
+            animation: fadeIn 3s ease forwards;
+        }
+
+        img {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: fadeIn 2s ease forwards;
+        }
+
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: #fff;
+            font-size: 20px;
+            animation: fall linear forwards;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #ff6b81;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 🎵 背景音乐（替换成客户想要的音乐链接） -->
+<audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<section>
+    <h1>正在读取关于 <span id="name">小雨</span> 的重要记忆…</h1>
+    <p>记忆加载中 ❤️❤️❤️❤️❤️</p>
+</section>
+
+<section>
+    <h1>在这个世界上</h1>
+    <p>有一个人已经陪你走过 <b id="days">742</b> 天</p>
+    <img src="https://picsum.photos/220/220?random=1" alt="回忆1">
+</section>
+
+<section>
+    <h1>那些舍不得删除的瞬间</h1>
+    <img src="https://picsum.photos/220/220?random=2" alt="回忆2">
+    <img src="https://picsum.photos/220/220?random=3" alt="回忆3">
+</section>
+
+<section>
+    <p>
+        虽然今天我不能在你身边陪你过生日<br><br>
+        但我准备了这个小小的惊喜<br><br>
+        想让你知道——<br><br>
+        你一直被认真爱着 💖
+    </p>
+</section>
+
+<section>
+    <h1>🎂 <span id="age">22</span> 岁生日快乐</h1>
+    <p>
+        未来的每一年<br>
+        我都想继续参与<br><br>
+        —— 来自 <span id="from">某个很爱你的人</span>
+    </p>
+    <button onclick="startHearts()">点我领取生日惊喜</button>
+</section>
+
+<script>
+    function startHearts() {
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerText = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
