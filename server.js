@@ -47,6 +47,7 @@ const templateHtml = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf
 
 function renderPage(data) {
   return templateHtml
+    .replace(/\{\{id\}\}/g, escapeHtml(data.id || ''))
     .replace(/\{\{name\}\}/g, escapeHtml(data.name || 'TA'))
     .replace(/\{\{days\}\}/g, escapeHtml(String(data.days || '365')))
     .replace(/\{\{age\}\}/g, escapeHtml(String(data.age || '22')))
@@ -86,7 +87,7 @@ app.post('/create', (req, res, next) => {
       return res.status(400).json({ ok: false, error: '请上传 3 张照片（回忆1、回忆2、回忆3）' });
     }
 
-    const html = renderPage({ name, days, age, from });
+    const html = renderPage({ id, name, days, age, from });
     fs.writeFileSync(path.join(dir, 'index.html'), html, 'utf8');
 
     const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
